@@ -1,6 +1,6 @@
 # Simple Metadata Annotation
 
-* Contributors: colomet, danzhik ,huguespages
+* Contributors: colomet, danzhik
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: aiom, extensions, metadata, annotation
 * Requires at least: 4.9.6
@@ -10,7 +10,7 @@
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Plugin for automatic generation of annotation meta fields in web-pages, post and page
+Plugin for automatic generation of annotation meta fields in web-pages.
 
 ## Description
 
@@ -40,7 +40,7 @@ Simple Metadata Annotation markup will be stored in cached versions of web-pages
 1. Upload plugin folder to /wp-content/plugins/ folder in your web-site file-system.
 1. Activate it from 'Plugins page' in your website.
 
-## Upgrades
+## upgrades
 
 For upgrades, download the last stable version from github, delete from FTP the old plugin and install the new one.
 
@@ -61,10 +61,8 @@ The Simple Metadata Annotation plugin is supplied "as is" and all use is at your
 
 ## Upgrade Notice
 
-
 ### 1.0
-* Initial release
-* Requires Simple Metadata 1.1
+
 
 ## Credits
 
