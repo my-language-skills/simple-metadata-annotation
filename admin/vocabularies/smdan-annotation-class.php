@@ -79,6 +79,28 @@ class smdan_Metadata_annotation{
 				<?php
 	}
 
+	public function render_disable_field ($field_slug, $field, $value) {
+		global $post;
+
+		//Getting the origin for overwritten data
+				$dataFrom = is_plugin_active('pressbooks/pressbooks.php') ? 'Book-Info' : 'Site-Meta';
+
+			//getting value of post meta
+				$meta_value = $label = get_post_meta($post->ID, $field_slug, true);
+
+				//gettign porperty name from field name
+				$property = explode('_', $field_slug)[1];
+
+				//getting label of this property
+				foreach (self::$annotation_properties as $key => $value) {
+					if (strtolower($key) == $property){
+						$property = $value[0];
+					}
+				}
+		?>
+				<p> </p>
+				<?php
+	}
 	/**
 	 * The function which produces the metaboxes for the vocabulary
 	 *
@@ -98,10 +120,28 @@ class smdan_Metadata_annotation{
 		foreach ( self::$annotation_properties as $property => $details ) {
 
 			$callback = null;
+			$freezes = [];
+			$disable = [];
 
-			$freezes = get_option('smdan_freezes');
-			if ($meta_position != 'site-meta' && $meta_position!= 'metadata'  && isset($freezes[$property]) && $freezes[$property]){
-				$callback = 'render_frozen_field';
+			$freezesS = get_option('smdan_');
+			foreach ((array) $freezesS as $key => $value) {
+				if ($value=='3') {
+					$freezes[$key] = '1';
+				}
+				if ($value=='1') {
+					$disable[$key] = '1';
+				}
+			}
+
+			//if this property is frozen, we render its metafield correspondingly
+			if ($meta_position != 'site-meta' && $meta_position!= 'metadata' && isset($freezes[$property]) && $freezes[$property]){
+
+					$callback = 'render_frozen_field';
+
+			}
+
+			if ($meta_position != 'site-meta' && $meta_position!= 'metadata' && isset($disable[$property]) && $disable[$property]){
+				$callback = 'render_disable_field';
 			}
 
 			$fieldId = strtolower('smdan_' . $property . '_' .$this->groupId. '_' .$meta_position);

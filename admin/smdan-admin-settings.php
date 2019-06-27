@@ -28,8 +28,9 @@ function smdan_add_annotation_settings() {
 
 		//registering settings for locations and properties management
 		register_setting('smdan_meta_locations', 'smdan_locations');
-
 		register_setting ('smdan_meta_properties', 'smdan_shares');
+
+		register_setting ('smdan_meta_properties', 'smdan_');
 
 		register_setting ('smdan_meta_properties', 'smdan_freezes');
 
@@ -38,16 +39,20 @@ function smdan_add_annotation_settings() {
 		$post_types = smd_get_all_post_types();
 		$locations = get_option('smdan_locations');
 		$shares = get_option('smdan_shares');
+		$shares1 = get_option('smdan_');
 		$freezes = get_option('smdan_freezes');
 
 		//initiazaling variables for network values
 		$network_locations = [];
 		$network_shares = [];
+
+		$network_shares1 = [];
 		$network_freezes = [];
 		//in case of multisite installation, we collect options for network
 		if (is_multisite()){
 			$network_locations = get_blog_option(1, 'smdan_net_locations');
 			$network_shares = get_blog_option(1, 'smdan_net_shares');
+			$network_shares1 = get_blog_option(1, 'smdan_net_');
 			$network_freezes = get_blog_option(1, 'smdan_net_freezes');
 		}
 
@@ -75,31 +80,40 @@ function smdan_add_annotation_settings() {
 		//creating fields for every property in annotation vocabulary
 		foreach (annotation_meta::$annotation_properties as $key => $data) {
 
-			add_settings_field ('smdan_'.$key, ucfirst($data[0]), function () use ($key, $data, $shares, $freezes, $network_shares, $network_freezes){
-				$checked_share = isset($shares[$key]) ? true : false;
-				$checked_freeze = isset($freezes[$key]) ? true : false;
-				$disabled_share = isset($network_shares[$key]) && $network_shares[$key] ? 'disabled' : '';
-				$disabled_freeze = isset($network_freezes[$key]) && $network_freezes[$key] ? 'disabled' : '';
-				?>
-					<label for="smdan_shares[<?=$key?>]"><i>Share</i> <input type="checkbox" name="smdan_shares[<?=$key?>]" id="smdan_shares[<?=$key?>]" value="1" <?php checked(1, $checked_share); echo $disabled_share?>></label>
-					<label for="smdan_freezes[<?=$key?>]"><i>Freeze</i> <input type="checkbox" name="smdan_freezes[<?=$key?>]" id="smdan_freezes[<?=$key?>]" value="1" <?php checked(1, $checked_freeze); echo $disabled_freeze?>></label>
-					<br><span class="description"><?=$data[1]?></span>
-				<?php
-				if ('disabled' == $disabled_share){
-					?>
-						<input type="hidden" name="smdan_shares[<?=$key?>]" value="1">
-					<?php
-				}
-				if ('disabled' == $disabled_freeze){
-					?>
-						<input type="hidden" name="smdan_freezes[<?=$key?>]" value="1">
-					<?php
-				}
-			}, 'smdan_meta_properties', 'smdan_meta_properties');
+			add_settings_field ('smdan_'.$key, ucfirst($data[0]), function () use ($key, $data, $shares1, $freezes, $network_shares1, $network_freezes){
+				if (!empty($network_shares1)) {
+					if ($network_shares1[$key] == '0') {
+						$shares1 = get_option('smdan_');
+					// $shares1_class[$key] == '0';
+					 $valeur_key_anno = '4';
 
-		}
-	}
+					}
+					else {
+						$shares1[$key] = $network_shares1[$key];
+						 $valeur_key_anno = $shares1[$key];
+					}
+				}else
+				 {
+					$disabled_ca = '';
+				}
+				?>
+				<label for="smdan_disable[<?=$key?>]">Disable <input type="radio"  name="smdan_[<?=$key?>]" value="1" id="smdan_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
+				?>  <?php  if ($valeur_key_anno == '1' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?> ></label>
+				<label for="smdan_local_value[<?=$key?>]">Local value <input type="radio"  name="smdan_[<?=$key?>]" value="0" id="smdan_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' || empty($shares1[$key])) { echo "checked='checked'"; }
+				?>  <?php  if ($valeur_key_anno == '0' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?>></label>
+				<label  for="smdan_share[<?=$key?>]">Share <input type="radio"  name="smdan_[<?=$key?>]" value="2" id="smdan_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
+				?>  <?php  if ($valeur_key_anno == '2' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?>></label>
+				<label for="smdan_freeze[<?=$key?>]">Freeze <input type="radio"  name="smdan_[<?=$key?>]" value="3" id="smdan_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
+				?> <?php  if ($valeur_key_anno == '3' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?>></label>
+					<br><span class="description"><?=$data[1]?></span>
+					<?php
+
+			}, 'smdan_meta_properties', 'smdan_meta_properties');
 }
+		}
+		}
+
+
 
 /**
  * Function for rendering settings subpage
@@ -193,11 +207,11 @@ function smdan_render_metabox_properties(){
 
  	//collecting options values
  	$locations = get_option('smdan_locations') ?: [];
- 	$shares = get_option('smdan_shares') ?: [];
+ 	$shares1 = get_option('smdan_') ?: [];
  	$freezes = get_option('smdan_freezes') ?: [];
 
  	//if nothing is chosen to share or freeze, return
- 	if(empty($shares) && empty($freezes)){
+ 	if(empty($shares1) && empty($freezes)){
  		return;
  	}
 
@@ -245,73 +259,69 @@ function smdan_render_metabox_properties(){
      }
 
      //checking if there is somthing to share for annotation properties
- 	if(!empty($shares)){
+		 if(!empty($shares1)){
 
- 		//looping through all active locations
- 		foreach ($locations as $location => $val){
- 			if ($location == $meta_type) {
- 				continue;
- 			}
-         	//Getting all posts of $location type
-         	$posts_ids = $wpdb->get_results($wpdb->prepare("
-         	SELECT `ID` FROM `$postsTable` WHERE `post_type` = %s",$location),ARRAY_A);
+	  		//looping through all active locations
+	  		foreach ($shares1 as $key => $value) {
+	  		if ($value=='2') {
+	  		foreach ($locations as $location => $val){
+	  			if ($location == $meta_type) {
+	  				continue;
+	  			}
+	          	//Getting all posts of $location type
+	          	$posts_ids = $wpdb->get_results($wpdb->prepare("
+	          	SELECT `ID` FROM `$postsTable` WHERE `post_type` = %s",$location),ARRAY_A);
 
-         	//looping through all posts of type $locations
-         	foreach ($posts_ids as $post_id) {
-         		$post_id = $post_id['ID'];
+	          	//looping through all posts of type $locations
+	          	foreach ($posts_ids as $post_id) {
+	          		$post_id = $post_id['ID'];
 
-         		foreach ($shares as $key => $value) {
-         			$meta_key = 'smdan_'.strtolower($key).'_annotation_'.$location;
-         			$metadata_meta_key = 'smdan_'.strtolower($key).'_annotation_'.$meta_type;
-         			if((!get_post_meta($post_id, $meta_key) || '' == get_post_meta($post_id, $meta_key)) && isset($metaData[$metadata_meta_key])){
-         				update_post_meta($post_id, $meta_key, $metaData[$metadata_meta_key]);
-         			}
-         		}
-         	}
+	          		foreach ($shares1 as $key => $value) {
+									if ($value=='2') {
+	          			$meta_key = 'smdan_'.strtolower($key).'_annotation_'.$location;
+	          			$metadata_meta_key = 'smdan_'.strtolower($key).'_annotation_'.$meta_type;
+	          			if((!get_post_meta($post_id, $meta_key) || '' == get_post_meta($post_id, $meta_key)) && isset($metaData[$metadata_meta_key])){
+	          				update_post_meta($post_id, $meta_key, $metaData[$metadata_meta_key]);
+	          			}
+											}
+	          		}
+	          	}
+	  					}
+	  				}
+	  			if ($value=='3') {
+	  				foreach ($locations as $location => $val){
+	  					if ($location == $meta_type) {
+	  						continue;
+	  					}
+	  		        	//Getting all posts of $location type
+	  		        	$posts_ids = $wpdb->get_results($wpdb->prepare("
+	  		        	SELECT `ID` FROM `$postsTable` WHERE `post_type` = %s",$location),ARRAY_A);
 
- 		}
- 	}
+	  		        	//looping through all posts of type $locations
+	  		        	foreach ($posts_ids as $post_id) {
+	  		        		$post_id = $post_id['ID'];
 
- 	//checking if there is somthing to share for annotation properties
- 	if(!empty($freezes)){
+	  		        		foreach ($shares1 as $key => $value) {
+											if ($value=='3') {
+	  		        			$meta_key = 'smdan_'.strtolower($key).'_annotation_'.$location;
+	  		        			$metadata_meta_key = 'smdan_'.strtolower($key).'_annotation_'.$meta_type;
+	  		        			if(isset($metaData[$metadata_meta_key])){
+	  		        				update_post_meta($post_id, $meta_key, $metaData[$metadata_meta_key]);
+	  		        			}
+												}
+	  		        		}
+	  		        	}
 
- 		//looping through all active locations
- 		foreach ($locations as $location => $val){
- 			if ($location == $meta_type) {
- 				continue;
- 			}
-         	//Getting all posts of $location type
-         	$posts_ids = $wpdb->get_results($wpdb->prepare("
-         	SELECT `ID` FROM `$postsTable` WHERE `post_type` = %s",$location),ARRAY_A);
+	  				}
+	  			}
+	  		}
+	  	}
+	  }
 
-         	//looping through all posts of type $locations
-         	foreach ($posts_ids as $post_id) {
-         		$post_id = $post_id['ID'];
-
-         		foreach ($freezes as $key => $value) {
-         			$meta_key = 'smdan_'.strtolower($key).'_annotation_'.$location;
-         			$metadata_meta_key = 'smdan_'.strtolower($key).'_annotation_'.$meta_type;
-         			if(isset($metaData[$metadata_meta_key])){
-         				update_post_meta($post_id, $meta_key, $metaData[$metadata_meta_key]);
-         			}
-         		}
-         	}
-
- 		}
- 	}
- }
 
 add_action('admin_menu', 'smdan_add_annotation_settings', 100);
 add_action('updated_option', function( $option_name, $old_value, $value ){
-	if ('smdan_freezes' == $option_name){
-		$shares = get_option('smdan_shares') ?: [];
-		$value = empty($value) ? [] : $value;
-		$shares = array_merge($shares, $value);
-
-		update_option('smdan_shares', $shares);
-	}
-
-	if ('smdan_locations' == $option_name){
+	if ('smde_locations' == $option_name){
 		$locations_general = get_option('smd_locations') ?: [];
 		$value = empty($value) ? [] : $value;
 		$locations_general = array_merge($locations_general, $value);

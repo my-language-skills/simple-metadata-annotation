@@ -21,16 +21,15 @@ function smdan_add_network_settings() {
 
     //registering settings
     register_setting('smdan_network_meta_locations', 'smdan_net_locations');
-	register_setting ('smdan_network_meta_properties', 'smdan_net_shares');
+	register_setting ('smdan_network_meta_properties', 'smdan_net_');
 	register_setting ('smdan_network_meta_properties', 'smdan_net_freezes');
 
 
 	// getting options values from DB
 	$post_types = smd_get_all_post_types();
 	$locations = get_option('smdan_net_locations');
-	$shares = get_option('smdan_net_shares');
+	$shares1 = get_option('smdan_net_');
 	$freezes = get_option('smdan_net_freezes');
-
 
 	//adding settings for locations
 	foreach ($post_types as $post_type) {
@@ -49,12 +48,18 @@ function smdan_add_network_settings() {
 
 	//adding settings for educational properties management
 	foreach (annotation_meta::$annotation_properties as $key => $data) {
-		add_settings_field ('smdan_net_'.$key, ucfirst($data[0]), function () use ($key, $data, $shares, $freezes){
-			$checked_share = isset($shares[$key]) ? true : false;
-			$checked_freeze = isset($freezes[$key]) ? true : false;
+		add_settings_field ('smdan_net_'.$key, ucfirst($data[0]), function () use ($key, $data, $shares1, $freezes){
+      $shares1[$key] = !empty($shares1[$key]) ? $shares1[$key] : '0';
+
 			?>
-				<label for="smdan_net_shares[<?=$key?>]"><i>Share</i> <input type="checkbox" name="smdan_net_shares[<?=$key?>]" id="smdan_net_shares[<?=$key?>]" value="1" <?php checked(1, $checked_share);?>></label>
-				<label for="smdan_net_freezes[<?=$key?>]"><i>Freeze</i> <input type="checkbox" name="smdan_net_freezes[<?=$key?>]" id="smdan_net_freezes[<?=$key?>]" value="1" <?php checked(1, $checked_freeze);?>></label>
+      <label for="smdan_net_disable[<?=$key?>]">Disable <input type="radio"  name="smdan_net_[<?=$key?>]" value="1" id="smdan_net_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
+      ?>  ></label>
+      <label for="smdan_net_local_value[<?=$key?>]">Local value <input type="radio"  name="smdan_net_[<?=$key?>]" value="0" id="smdan_net_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' ) { echo "checked='checked'"; }
+      ?>  ></label>
+      <label  for="smdan_net_share[<?=$key?>]">Share <input type="radio"  name="smdan_net_[<?=$key?>]" value="2" id="smdan_net_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
+      ?>  ></label>
+      <label for="smdan_net_freeze[<?=$key?>]">Freeze <input type="radio"  name="smdan_net_[<?=$key?>]" value="3" id="smdan_net_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
+      ?> ></label>
 				<br><span class="description"><?=$data[1]?></span>
 			<?php
 		}, 'smdan_network_meta_properties', 'smdan_network_meta_properties');
@@ -204,14 +209,13 @@ function smdan_update_network_options() {
     global $wpdb;
 
     //collecting network options values from request
-    $freezes = isset($_POST['smdan_net_freezes']) ? $_POST['smdan_net_freezes'] : array();
-    $shares = isset($_POST['smdan_net_shares']) ? $_POST['smdan_net_shares'] : array();
+
+    $shares1 = isset($_POST['smdan_net_']) ? $_POST['smdan_net_'] : array();
     //if property is frozen, it's automatically shared
-    $shares = array_merge($shares, $freezes);
+
 
     //updating network options in DB
-	update_blog_option(1, 'smdan_net_freezes', $freezes);
-	update_blog_option(1, 'smdan_net_shares', $shares);
+	update_blog_option(1, 'smdan_net_', $shares1);
 
 	//Grabbing all the site IDs
     $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
@@ -226,16 +230,13 @@ function smdan_update_network_options() {
     	switch_to_blog($site_id);
 
     	//> we merge values received from network settings with local values of every blog
-    	$freezes_local = get_option('smdan_freezes') ?: array();
-    	$frezees_local = array_merge($freezes_local, $freezes);
 
-    	$shares_local = get_option('smdan_shares') ?: array();
-    	$shares_local = array_merge($shares_local, $shares);
+    	$shares1_local = get_option('smdan_') ?: array();
+    	$shares1_local = array_merge($shares1_local, $shares1);
     	//<
 
     	//updating local options
-    	update_option('smdan_freezes', $frezees_local);
-    	update_option('smdan_shares', $shares_local);
+    	update_option('smdan_', $shares1_local);
 
     	smdan_update_overwrites();
     }
@@ -250,6 +251,6 @@ function smdan_update_network_options() {
 }
 
 
-add_action( 'network_admin_menu', 'smdan_add_network_settings', 1001); //third parameter means priority, bigger => later executed hooked function
+add_action( 'network_admin_menu', 'smdan_add_network_settings', 1000); //third parameter means priority, bigger => later executed hooked function
 add_action( 'network_admin_edit_smdan_update_network_locations', 'smdan_update_network_locations');
 add_action( 'network_admin_edit_smdan_update_network_options', 'smdan_update_network_options');

@@ -20,7 +20,7 @@ require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 //we only enable plugin functionality if main plugin - Simple Metadata - is installed
 if(is_plugin_active('simple-metadata/simple-metadata.php')){
-	include_once plugin_dir_path( __FILE__ ) . "admin/smdan-annotation-class.php";
+	include_once plugin_dir_path( __FILE__ ) . "admin/vocabularies/smdan-annotation-class.php";
 	include_once plugin_dir_path( __FILE__ ) . "admin/smdan-admin-settings.php";
 	include_once plugin_dir_path( __FILE__ ) . "admin/smdan-output.php";
 	include_once plugin_dir_path( __FILE__ ) . "admin/smdan-init-metaboxes.php";
