@@ -1,6 +1,6 @@
 # Simple Metadata Annotation
 
-* Contributors: colomet, danzhik ,huguespages
+* Contributors: colomet, danzhik, huguespages, davideC00
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: aiom, extensions, metadata, annotation
 * Requires at least: 4.9.6

@@ -15,14 +15,14 @@ function smdan_add_annotation_settings() {
 	if ((1 != get_current_blog_id() && is_multisite()) || !is_multisite()){
 
 		//adding subapage to page of main plugin
-		add_submenu_page('smd_set_page',' Annotation' , 'Annotation', 'manage_options', 'smdan_set_page', 'smdan_render_settings');
+		add_submenu_page('smd_set_page', __('Annotation', 'simple-metadata-annotation') , __('Annotation', 'simple-metadata-annotation'), 'manage_options', 'smdan_set_page', 'smdan_render_settings');
 
 		//adding metaboxes and sections for settings
-		add_meta_box('smdan-metadata-location', ' Annotation', 'smdan_render_metabox_schema_locations', 'smd_set_page', 'normal', 'core');
+		add_meta_box('smdan-metadata-location', __('Annotation', 'simple-metadata-annotation'), 'smdan_render_metabox_schema_locations', 'smd_set_page', 'normal', 'core');
 
 		add_settings_section( 'smdan_meta_locations', '', '', 'smdan_meta_locations' );
 
-		add_meta_box('smdan-metadata-properties', 'Properties Management', 'smdan_render_metabox_properties', 'smdan_set_page', 'normal', 'core');
+		add_meta_box('smdan-metadata-properties', __('Properties Management', 'simple-metadata-annotation'), 'smdan_render_metabox_properties', 'smdan_set_page', 'normal', 'core');
 
 		add_settings_section( 'smdan_meta_properties', '', '', 'smdan_meta_properties' );
 
@@ -87,23 +87,33 @@ function smdan_add_annotation_settings() {
 					// $shares1_class[$key] == '0';
 					 $valeur_key_anno = '4';
 
-					}
-					else {
+					}else {
 						$shares1[$key] = $network_shares1[$key];
-						 $valeur_key_anno = $shares1[$key];
+						$valeur_key_anno = $shares1[$key];
 					}
 				}else
-				 {
+					{
 					$disabled_ca = '';
+					$valeur_key_anno = '';
 				}
+
 				?>
-				<label for="smdan_disable[<?=$key?>]">Disable <input type="radio"  name="smdan_[<?=$key?>]" value="1" id="smdan_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
-				?>  <?php  if ($valeur_key_anno == '1' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?> ></label>
-				<label for="smdan_local_value[<?=$key?>]">Local value <input type="radio"  name="smdan_[<?=$key?>]" value="0" id="smdan_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' || empty($shares1[$key])) { echo "checked='checked'"; }
-				?>  <?php  if ($valeur_key_anno == '0' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?>></label>
-				<label  for="smdan_share[<?=$key?>]">Share <input type="radio"  name="smdan_[<?=$key?>]" value="2" id="smdan_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
+				<label for="smdan_disable[<?=$key?>]">
+						<?php esc_html_e('Disable', 'simple-metadata-annotation'); ?>
+					  <input type="radio"  name="smdan_[<?=$key?>]" value="1" id="smdan_disable[<?=$key?>]"
+							<?php if ($shares1[$key]=='1') { echo "checked='checked'"; } ?>
+					 		<?php if ($valeur_key_anno == '1' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";} ?>
+						>
+				</label>
+				<label for="smdan_local_value[<?=$key?>]"><?php esc_html_e('Local value', 'simple-metadata-annotation'); ?>
+						<input type="radio"  name="smdan_[<?=$key?>]" value="0" id="smdan_local_value[<?=$key?>]"
+								<?php if ($shares1[$key]=='0' || empty($shares1[$key])) { echo "checked='checked'"; } ?>
+								<?php if ($valeur_key_anno == '0' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?>
+						>
+				</label>
+				<label  for="smdan_share[<?=$key?>]"><?php esc_html_e('Share', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_[<?=$key?>]" value="2" id="smdan_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
 				?>  <?php  if ($valeur_key_anno == '2' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?>></label>
-				<label for="smdan_freeze[<?=$key?>]">Freeze <input type="radio"  name="smdan_[<?=$key?>]" value="3" id="smdan_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
+				<label for="smdan_freeze[<?=$key?>]"><?php esc_html_e('Freeze', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_[<?=$key?>]" value="3" id="smdan_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
 				?> <?php  if ($valeur_key_anno == '3' || $valeur_key_anno == '4') {echo "";}else {echo "disabled";}  ?>></label>
 					<br><span class="description"><?=$data[1]?></span>
 					<?php
@@ -130,13 +140,13 @@ function smdan_render_settings() {
         <div class="wrap">
         	<?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']) { ?>
         	<div class="notice notice-success is-dismissible">
-				<p><strong>Settings saved.</strong></p>
+				<p><strong><?php esc_html_e('Settings saved.',  'simple-metadata-annotation'); ?></strong></p>
 			</div>
 			<?php smdan_update_overwrites(); }?>
-            <h2>Simple Metadata Annotation Settings</h2>
+            <h2><?php esc_html_e('Simple Metadata Annotation Settings',  'simple-metadata-annotation'); ?></h2>
             <div class="metabox-holder">
 					<?php
-					do_meta_boxes('smdan_set_page', 'normal','');
+					do_meta_boxes('smdan_set_page', 'normal', '');
 					?>
             </div>
         </div>
@@ -159,7 +169,7 @@ function smdan_render_settings() {
 function smdan_render_metabox_schema_locations(){
 	?>
 	<div id="smdan_meta_locations" class="smdan_meta_locations">
-		<span class="description">Description for annotation locations metabox</span>
+		<span class="description"><?php esc_html_e('Description for annotation locations metabox', 'simple-metadata-annotation'); ?></span>
 		<form method="post" action="options.php">
 			<?php
 			settings_fields( 'smdan_meta_locations' );
@@ -178,11 +188,11 @@ function smdan_render_metabox_schema_locations(){
 function smdan_render_metabox_properties(){
 	$locations = get_option('smdan_locations');
 	$level = is_plugin_active('pressbooks/pressbooks.php') ? 'metadata' : 'site-meta';
-	$label = $level == 'metadata' ? 'Book Info' : 'Site-Meta';
+	$label = $level == 'metadata' ? __('Book Info', 'simple-metadata-annotation') : __('Site-Meta', 'simple-metadata-annotation');
 	if (isset($locations[$level]) && $locations[$level]){
 	?>
 	<div id="smdan_meta_properties" class="smdan_meta_properties">
-		<span class="description">Description for annotation properties metabox</span>
+		<span class="description"><?php esc_html_e('Description for annotation properties metabox', 'simple-metadata-annotation'); ?></span>
 		<form method="post" action="options.php">
 			<?php
 			settings_fields( 'smdan_meta_properties' );
@@ -195,7 +205,7 @@ function smdan_render_metabox_properties(){
 	<?php
 	} else {
 		?>
-			<p style="color: red;">Activate <?=$label?> location in order to manage properties.</p>
+			<p style="color: red;"> <?php printf(esc_html__('Activate %s location in order to manage properties.', 'simple-metadata-annotation'), $label); ?></p>
 		<?php
 	}
 }

@@ -12,8 +12,8 @@ defined ("ABSPATH") or die ("No script assholes!");
 function smdan_add_network_settings() {
 
     //adding settings metaboxes and settigns sections
-    add_meta_box('smdan-metadata-network-location', 'annotation Metadata', 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
-    add_meta_box('smdan-network-metadata-properties', 'annotation Properties Management', 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
+    add_meta_box('smdan-metadata-network-location', __('annotation Metadata', 'simple-metadata-annotation'), 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
+    add_meta_box('smdan-network-metadata-properties', __('annotation Properties Management', 'simple-metadata-annotation'), 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
 
     add_settings_section( 'smdan_network_meta_locations', '', '', 'smdan_network_meta_locations' );
 
@@ -52,13 +52,13 @@ function smdan_add_network_settings() {
       $shares1[$key] = !empty($shares1[$key]) ? $shares1[$key] : '0';
 
 			?>
-      <label for="smdan_net_disable[<?=$key?>]">Disable <input type="radio"  name="smdan_net_[<?=$key?>]" value="1" id="smdan_net_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
+      <label for="smdan_net_disable[<?=$key?>]"><?php esc_html_e('Disable', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="1" id="smdan_net_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
       ?>  ></label>
-      <label for="smdan_net_local_value[<?=$key?>]">Local value <input type="radio"  name="smdan_net_[<?=$key?>]" value="0" id="smdan_net_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' ) { echo "checked='checked'"; }
+      <label for="smdan_net_local_value[<?=$key?>]"><?php esc_html_e('Local value', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="0" id="smdan_net_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' ) { echo "checked='checked'"; }
       ?>  ></label>
-      <label  for="smdan_net_share[<?=$key?>]">Share <input type="radio"  name="smdan_net_[<?=$key?>]" value="2" id="smdan_net_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
+      <label  for="smdan_net_share[<?=$key?>]"><?php esc_html_e('Share', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="2" id="smdan_net_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
       ?>  ></label>
-      <label for="smdan_net_freeze[<?=$key?>]">Freeze <input type="radio"  name="smdan_net_[<?=$key?>]" value="3" id="smdan_net_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
+      <label for="smdan_net_freeze[<?=$key?>]"><?php esc_html_e('Freeze', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="3" id="smdan_net_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
       ?> ></label>
 				<br><span class="description"><?=$data[1]?></span>
 			<?php
@@ -106,7 +106,9 @@ function smdan_render_network_settings(){
 function smdan_network_render_metabox_schema_locations(){
 	?>
 	<div id="smdan_network_meta_locations" class="smdan_network_meta_locations">
-		<span class="description">Description for annotation network locations metabox</span>
+		<span class="description">
+      <?php esc_html_e('Description for annotation network locations metabox', 'simple-metadata-annotation'); ?>
+    </span>
 		<form method="post" action="edit.php?action=smdan_update_network_locations">
 			<?php
 			settings_fields( 'smdan_network_meta_locations' );
@@ -125,7 +127,9 @@ function smdan_network_render_metabox_schema_locations(){
 function smdan_network_render_metabox_properties(){
 	?>
 	<div id="smdan_network_meta_properties" class="smdan_network_meta_properties">
-		<span class="description">Description for annotation network properties metabox</span>
+		<span class="description">
+      <?php esc_html_e('Description for annotation network properties metabox', 'simple-metadata-annotation'); ?>
+    </span>
 		<form method="post" action="edit.php?action=smdan_update_network_options">
 			<?php
 			settings_fields( 'smdan_network_meta_properties' );

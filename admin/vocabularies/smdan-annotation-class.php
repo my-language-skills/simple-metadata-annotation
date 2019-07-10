@@ -37,9 +37,9 @@ class smdan_Metadata_annotation{
 	 * @since    0.x
 	 * @access   public
 	 */
-	public static $annotation_properties = array(
 
-		'annotation'=>array( 'Text area','If you are not finish',3)
+	public static $annotation_properties = array(
+		'annotation'=>array( 'Text area', 'If you are not finish', 3)
 	);
 
 	public function __construct($typeLevelInput) {
@@ -74,7 +74,8 @@ class smdan_Metadata_annotation{
 				}
 
 		?>
-				<p><strong><?=$property?></strong> is overwritten by <?=$dataFrom?>. The value is"<?=$label?>"</p>
+				<p>
+					<?php printf(esc_html__('%s is overwritten by %s. The value is "%s"', 'simple-metadata-annotation'), $property, $dataFrom, $label); ?>
 				<input type="hidden" name="<?=$field_slug?>" value="<?=$meta_value?>" />
 				<?php
 	}
@@ -112,7 +113,7 @@ class smdan_Metadata_annotation{
 
 		//creating metabox
 		x_add_metadata_group( $this->groupId,$meta_position, array(
-			'label' 		=>	'Annotation',
+			'label' 		=>	__('Annotation', 'simple-metadata-annotation'),
 			'priority' 		=>	'high'
 		) );
 
