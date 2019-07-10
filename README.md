@@ -6,7 +6,7 @@
 * Requires at least: 4.9.6
 * Tested up to: 4.9.6
 * Requires PHP: 7.0
-* Stable tag: 1.1
+* Stable tag: 1.0
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -64,6 +64,8 @@ The Simple Metadata Annotation plugin is supplied "as is" and all use is at your
 ### 1.1
 * **REMOVED**
     *  Auto update from github
+* **ADDITIONS**
+    * Internationalization
 
 ### 1.0
 * Initial release
