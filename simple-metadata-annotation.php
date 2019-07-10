@@ -65,3 +65,20 @@ if(is_plugin_active('simple-metadata/simple-metadata.php')){
 		});
 	}
 }
+
+/**
+ * Internalization
+ * It loads the MO file for plugin's translation
+ *
+ * @since 1.1
+ * @author @davideC00
+ *
+ */
+	function smdan_load_plugin_textdomain() {
+    load_plugin_textdomain( 'simple-metadata-annotation', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+}
+
+/**
+ * Called when the activated plugin has been loaded
+ */
+add_action( 'plugins_loaded', 'smdan_load_plugin_textdomain' );
