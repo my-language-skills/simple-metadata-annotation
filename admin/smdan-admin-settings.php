@@ -8,7 +8,7 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 defined ("ABSPATH") or die ("No script assholes!");
 
 /**
- * Function to add plugin settings subpage and registering settings and their sections
+ * Functions to add plugin settings subpage and registering settings and their sections
  */
 function smdan_add_annotation_settings() {
 	//we don't create settings page in blog 1 (not necessary)

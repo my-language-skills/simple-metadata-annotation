@@ -24,7 +24,7 @@ if(is_plugin_active('simple-metadata/simple-metadata.php')){
 	include_once plugin_dir_path( __FILE__ ) . "admin/smdan-admin-settings.php";
 	include_once plugin_dir_path( __FILE__ ) . "admin/smdan-output.php";
 	include_once plugin_dir_path( __FILE__ ) . "admin/smdan-init-metaboxes.php";
-	//loading network settings only for multisite installation
+	//loavding network settings only for multisite installation
 	if (is_multisite()){
 		include_once plugin_dir_path( __FILE__ ) . "network-admin/smdan-network-admin-settings.php";
 	}
