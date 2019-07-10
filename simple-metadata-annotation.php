@@ -48,15 +48,3 @@ if(is_plugin_active('simple-metadata/simple-metadata.php')){
 		});
 	}
 }
-
-/*
-* Auto update from github
-*
-* @since 1.0
-*/
-require 'vendor/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-		'https://github.com/my-language-skills/simple-metadata-annotation/',
-		__FILE__,
-		'simple-metadata-annotation'
-);
