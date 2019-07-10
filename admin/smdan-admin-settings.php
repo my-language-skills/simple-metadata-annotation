@@ -95,6 +95,8 @@ function smdan_add_annotation_settings() {
 				}else
 				 {
 					$disabled_ca = '';
+					$valeur_key_anno = '4';
+
 				}
 				?>
 				<label for="smdan_disable[<?=$key?>]">Disable <input type="radio"  name="smdan_[<?=$key?>]" value="1" id="smdan_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }

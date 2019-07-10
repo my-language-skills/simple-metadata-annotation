@@ -4,7 +4,7 @@
 Plugin Name: Simple Metadata Annotation
 Plugin URI: https://github.com/my-language-skills/simple-metadata-annotation
 Description: Simple Metadata add-on for annotation of web-site content.
-Version: 1.1
+Version: 1.0
 Author: My Language Skills team
 Author URI: https://github.com/my-language-skills
 Text Domain: simple-metadata-annotation
@@ -48,3 +48,15 @@ if(is_plugin_active('simple-metadata/simple-metadata.php')){
 		});
 	}
 }
+
+/*
+* Auto update from github
+*
+* @since 1.0
+*/
+require 'vendor/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+		'https://github.com/my-language-skills/simple-metadata-annotation/',
+		__FILE__,
+		'simple-metadata-annotation'
+);
