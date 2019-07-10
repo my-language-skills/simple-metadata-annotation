@@ -7,7 +7,7 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 defined ("ABSPATH") or die ("No script assholes!");
 
 /**
- * Function for adding network settings page
+ * Functidon for adding network settings page
  */
 function smdan_add_network_settings() {
 
