@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Summary (no period for file headers)
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata-annotation
+ * @subpackage admin/network
+ * @since x.x.x (when the file was introduced)
+ */
+
 //network settings functionality
 
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
@@ -7,8 +19,12 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 defined ("ABSPATH") or die ("No script assholes!");
 
 /**
- * Function for adding network settings page
- */
+* Function for adding network settings page.
+*
+* @since
+*
+*/
+
 function smdan_add_network_settings() {
 
     //adding settings metaboxes and settigns sections
@@ -68,8 +84,12 @@ function smdan_add_network_settings() {
 }
 
 /**
- * Function for rendering settings page
- */
+* Function for rendering settings page.
+*
+* @since
+*
+*/
+
 function smdan_render_network_settings(){
 	wp_enqueue_script('common');
 		wp_enqueue_script('wp-lists');
@@ -101,8 +121,12 @@ function smdan_render_network_settings(){
 }
 
 /**
- * Function for rendering metabox of locations
- */
+* Function for rendering metabox of locations.
+*
+* @since
+*
+*/
+
 function smdan_network_render_metabox_schema_locations(){
 	?>
 	<div id="smdan_network_meta_locations" class="smdan_network_meta_locations">
@@ -122,8 +146,12 @@ function smdan_network_render_metabox_schema_locations(){
 }
 
 /**
- * Function for rendering metabox for properties management
- */
+* Function for rendering metabox for properties management.
+*
+* @since
+*
+*/
+
 function smdan_network_render_metabox_properties(){
 	?>
 	<div id="smdan_network_meta_properties" class="smdan_network_meta_properties">
@@ -143,8 +171,12 @@ function smdan_network_render_metabox_properties(){
 }
 
 /**
- * Handler for locations settings update
- */
+* Handler for locations settings update.
+*
+* @since
+*
+*/
+
 function smdan_update_network_locations() {
 
 	check_admin_referer('smdan_network_meta_locations-options');
@@ -203,8 +235,12 @@ function smdan_update_network_locations() {
 }
 
 /**
- * Handler for properties settings update
- */
+* Handler for properties settings update.
+*
+* @since
+*
+*/
+
 function smdan_update_network_options() {
 
 	check_admin_referer('smdan_network_meta_properties-options');

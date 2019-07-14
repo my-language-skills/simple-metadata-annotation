@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Summary (no period for file headers)
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata-annotation
+ * @subpackage admin/settngs
+ * @since x.x.x (when the file was introduced)
+ */
+
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
 
@@ -8,8 +20,12 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 defined ("ABSPATH") or die ("No script assholes!");
 
 /**
- * Functions to add plugin settings subpage and registering settings and their sections
- */
+* Functions to add plugin settings subpage and registering settings and their sections.
+*
+* @since
+*
+*/
+
 function smdan_add_annotation_settings() {
 	//we don't create settings page in blog 1 (not necessary)
 	if ((1 != get_current_blog_id() && is_multisite()) || !is_multisite()){
@@ -124,11 +140,13 @@ function smdan_add_annotation_settings() {
 		}
 		}
 
-
-
 /**
- * Function for rendering settings subpage
- */
+* Function for rendering settings subpage.
+*
+* @since
+*
+*/
+
 function smdan_render_settings() {
 	if(!current_user_can('manage_options')){
 		return;
@@ -165,8 +183,12 @@ function smdan_render_settings() {
 }
 
 /**
- * Function for rendering 'Locations' metabox
- */
+* Function for rendering 'Locations' metabox.
+*
+* @since
+*
+*/
+
 function smdan_render_metabox_schema_locations(){
 	?>
 	<div id="smdan_meta_locations" class="smdan_meta_locations">
@@ -184,8 +206,12 @@ function smdan_render_metabox_schema_locations(){
 }
 
 /**
- * Function for rendering 'annotation properties' metabox
- */
+* Function for rendering 'annotation properties' metabox.
+*
+* @since
+*
+*/
+
 function smdan_render_metabox_properties(){
 	$locations = get_option('smdan_locations');
 	$level = is_plugin_active('pressbooks/pressbooks.php') ? 'metadata' : 'site-meta';
@@ -212,8 +238,12 @@ function smdan_render_metabox_properties(){
 }
 
 /**
- * Function for updating options and forcing overwritings on settings update
- */
+* Function for updating options and forcing overwritings on settings update.
+*
+* @since
+*
+*/
+
  function smdan_update_overwrites(){
 
  	//collecting options values

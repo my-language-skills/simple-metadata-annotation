@@ -1,4 +1,17 @@
 <?php
+
+/**
+ * Summary (no period for file headers)
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata-annotation
+ * @subpackage classes
+ * @since x.x.x (when the file was introduced)
+ */
+
 namespace vocabularies;
 
 /**
