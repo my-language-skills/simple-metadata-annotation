@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Unistall the plugin
+ *
+ *
+ * @link URL
+ *
+ * @package simple-metadata-annotation
+ * @since 1.0
+ */
+
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;

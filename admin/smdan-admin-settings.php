@@ -3,12 +3,25 @@
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
 
-//Creating settings subpage for Simple Metadata
+/**
+ * Creates settings subpage for Simple Metadata
+ *
+ * Description
+ *
+ * @link URL
+ *
+ * @package simple-metadata-annotation
+ * @subpackage simple-metadata-annotation/admin
+ * @since x.x.x (when the file was introduced)
+ */
 
 defined ("ABSPATH") or die ("No script assholes!");
 
 /**
  * Functions to add plugin settings subpage and registering settings and their sections
+ *
+ * @since
+ *
  */
 function smdan_add_annotation_settings() {
 	//we don't create settings page in blog 1 (not necessary)
@@ -128,6 +141,9 @@ function smdan_add_annotation_settings() {
 
 /**
  * Function for rendering settings subpage
+ *
+ * @since
+ *
  */
 function smdan_render_settings() {
 	if(!current_user_can('manage_options')){
@@ -166,6 +182,9 @@ function smdan_render_settings() {
 
 /**
  * Function for rendering 'Locations' metabox
+ *
+ * @since
+ *
  */
 function smdan_render_metabox_schema_locations(){
 	?>
@@ -185,6 +204,9 @@ function smdan_render_metabox_schema_locations(){
 
 /**
  * Function for rendering 'annotation properties' metabox
+ *
+ * @since
+ *
  */
 function smdan_render_metabox_properties(){
 	$locations = get_option('smdan_locations');
@@ -213,6 +235,9 @@ function smdan_render_metabox_properties(){
 
 /**
  * Function for updating options and forcing overwritings on settings update
+ *
+ * @since
+ *
  */
  function smdan_update_overwrites(){
 

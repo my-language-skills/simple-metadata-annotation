@@ -1,6 +1,17 @@
 <?php
 
-//network settings functionality
+/**
+ * Network settings functionality
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata-education
+ * @subpackage simple-metadata-education/network-admin
+ * @since 1.0
+ *
+ */
 
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
@@ -8,6 +19,9 @@ defined ("ABSPATH") or die ("No script assholes!");
 
 /**
  * Function for adding network settings page
+ *
+ * @since
+ *
  */
 function smdan_add_network_settings() {
 
@@ -69,6 +83,9 @@ function smdan_add_network_settings() {
 
 /**
  * Function for rendering settings page
+ *
+ * @since
+ *
  */
 function smdan_render_network_settings(){
 	wp_enqueue_script('common');
@@ -102,6 +119,9 @@ function smdan_render_network_settings(){
 
 /**
  * Function for rendering metabox of locations
+ *
+ * @since
+ *
  */
 function smdan_network_render_metabox_schema_locations(){
 	?>
@@ -123,6 +143,9 @@ function smdan_network_render_metabox_schema_locations(){
 
 /**
  * Function for rendering metabox for properties management
+ *
+ * @since
+ *
  */
 function smdan_network_render_metabox_properties(){
 	?>
@@ -144,6 +167,9 @@ function smdan_network_render_metabox_properties(){
 
 /**
  * Handler for locations settings update
+ *
+ * @since
+ *
  */
 function smdan_update_network_locations() {
 
@@ -204,6 +230,9 @@ function smdan_update_network_locations() {
 
 /**
  * Handler for properties settings update
+ *
+ * @since
+ *
  */
 function smdan_update_network_options() {
 

@@ -1,6 +1,17 @@
 <?php
 
-//creating metaboxes for educational metadata
+/**
+ * Creates metaboxes for educational metadata
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata-education
+ * @subpackage simple-metadata-education/admin
+ * @since 1.0
+ */
+
 
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
@@ -9,6 +20,9 @@ defined ("ABSPATH") or die ("No script assholes!");
 
 /**
  * Function for producing metaboxes in all active locations
+ *
+ * @since
+ *
  */
 function smdan_create_metaboxes() {
 

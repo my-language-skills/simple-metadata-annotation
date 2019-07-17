@@ -52,6 +52,9 @@ class smdan_Metadata_annotation{
 
 	/**
 	 * Function to render fields, which are frozen by admin/network admin
+	 *
+	 * @since
+	 *
 	 */
 	public function render_frozen_field ($field_slug, $field, $value) {
 		global $post;
@@ -80,6 +83,12 @@ class smdan_Metadata_annotation{
 				<?php
 	}
 
+	/**
+	 * Function to render fields, which are disabled by admin/network admin
+	 *
+	 * @since
+	 *
+	 */
 	public function render_disable_field ($field_slug, $field, $value) {
 		global $post;
 
@@ -213,7 +222,7 @@ class smdan_Metadata_annotation{
 	 * Gets the value for the microtags from $this->metadata.
 	 *
 	 * @since    0.x
-	 * @access   public
+	 *
 	 */
 	private function smdan_get_value( $propName ) {
 		$array = isset( $this->metadata[ $propName ] ) ? $this->metadata[ $propName ] : '';
@@ -235,7 +244,7 @@ class smdan_Metadata_annotation{
 	 * This is like when we use pressbooks to gather all data from Book Info
 	 * We are always working on a single post -- automatic
 	 * This function will be mostly used when the plugin is on wordpress mode and not on pressbooks mode.
-	 */
+  */
 	public static function get_site_meta_metadata(){
 
 		$post_type = is_plugin_active ('pressbooks/pressbooks.php') ? 'metadata' : 'site-meta';

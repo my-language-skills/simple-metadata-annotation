@@ -1,11 +1,23 @@
 <?php
-
-//functionality for printing metatags
+/**
+ * Function for printing metatags
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata-education
+ * @subpackage simple-metadata-education/admin
+ * @since 1.0
+ */
 
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
 /**
  * Function for printing metatags in site front-end
+ *
+ * @since
+ *
  */
 function smdan_print_tags ($type) {
 
