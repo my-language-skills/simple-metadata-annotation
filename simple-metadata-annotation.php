@@ -1,30 +1,28 @@
 <?php
 /**
- * Simple Metadata Annotation
+ * Simple Metadata - Annotation
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://github.com/my-language-skills/simple-metadata
+ * @link              https://github.com/my-language-skills/simple-metadata-annotation
  * @since             0.1
- * @package           simple-metadata-annotation
+ * @package           simple-metadata
  *
  * @wordpress-plugin
- * Plugin Name: Simple Metadata Annotation
- * Plugin URI: https://github.com/my-language-skills/simple-metadata-annotation
- * Description: Simple Metadata add-on for annotation of web-site content.
- * Version: 1.0
- * Author: My Language Skills team
- * Author URI: https://github.com/my-language-skills
- * License: GPL 3.0
- * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
- * Text Domain: simple-metadata-annotation
- * Domain Path: /languages
-*/
-
-
+ * Plugin Name:       Simple Metadata - Annotation
+ * Plugin URI:        https://github.com/my-language-skills/simple-metadata-annotation
+ * Description:       Simple Metadata add-on for annotation of web-site content
+ * Version:           1.0
+ * Author:            My Language Skills team
+ * Author URI:        https://github.com/my-language-skills/
+ * License:           GPL 3.0
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.txt
+ * Text Domain:       simple-metadata-annotation
+ * Domain Path:       /languages
+ */
 
 defined ("ABSPATH") or die ("No script assholes!");
 
@@ -78,11 +76,11 @@ if(is_plugin_active('simple-metadata/simple-metadata.php')){
 }
 
 /**
- * Internalization
- * It loads the MO file for plugin's translation
+ * Internalization.
+ *
+ * It loads the MO file for plugin's translation.
  *
  * @since 1.1
- * @author @davideC00
  *
  */
 	function smdan_load_plugin_textdomain() {

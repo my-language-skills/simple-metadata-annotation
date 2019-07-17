@@ -7,11 +7,12 @@
  *
  * @link URL
  *
- * @package simple-metadata-education
- * @subpackage simple-metadata-education/network-admin
- * @since 1.0
- *
+ * @package simple-metadata-annotation
+ * @subpackage admin/network
+ * @since x.x.x (when the file was introduced)
  */
+
+//network settings functionality
 
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
@@ -82,11 +83,12 @@ function smdan_add_network_settings() {
 }
 
 /**
- * Function for rendering settings page
- *
- * @since
- *
- */
+* Function for rendering settings page.
+*
+* @since
+*
+*/
+
 function smdan_render_network_settings(){
 	wp_enqueue_script('common');
 		wp_enqueue_script('wp-lists');
@@ -118,11 +120,12 @@ function smdan_render_network_settings(){
 }
 
 /**
- * Function for rendering metabox of locations
- *
- * @since
- *
- */
+* Function for rendering metabox of locations.
+*
+* @since
+*
+*/
+
 function smdan_network_render_metabox_schema_locations(){
 	?>
 	<div id="smdan_network_meta_locations" class="smdan_network_meta_locations">
@@ -142,11 +145,12 @@ function smdan_network_render_metabox_schema_locations(){
 }
 
 /**
- * Function for rendering metabox for properties management
- *
- * @since
- *
- */
+* Function for rendering metabox for properties management.
+*
+* @since
+*
+*/
+
 function smdan_network_render_metabox_properties(){
 	?>
 	<div id="smdan_network_meta_properties" class="smdan_network_meta_properties">
@@ -166,11 +170,12 @@ function smdan_network_render_metabox_properties(){
 }
 
 /**
- * Handler for locations settings update
- *
- * @since
- *
- */
+* Handler for locations settings update.
+*
+* @since
+*
+*/
+
 function smdan_update_network_locations() {
 
 	check_admin_referer('smdan_network_meta_locations-options');
@@ -229,11 +234,12 @@ function smdan_update_network_locations() {
 }
 
 /**
- * Handler for properties settings update
- *
- * @since
- *
- */
+* Handler for properties settings update.
+*
+* @since
+*
+*/
+
 function smdan_update_network_options() {
 
 	check_admin_referer('smdan_network_meta_properties-options');

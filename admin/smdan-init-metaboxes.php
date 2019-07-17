@@ -7,11 +7,12 @@
  *
  * @link URL
  *
- * @package simple-metadata-education
- * @subpackage simple-metadata-education/admin
- * @since 1.0
+ * @package simple-metadata-annotation
+ * @subpackage admin/metaboxes
+ * @since x.x.x (when the file was introduced)
  */
 
+//creating metaboxes for educational metadata
 
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
@@ -19,11 +20,12 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 defined ("ABSPATH") or die ("No script assholes!");
 
 /**
- * Function for producing metaboxes in all active locations
- *
- * @since
- *
- */
+* Function for producing metaboxes in all active locations.
+*
+* @since
+*
+*/
+
 function smdan_create_metaboxes() {
 
 	if (1 != get_current_blog_id() || !is_multisite()){

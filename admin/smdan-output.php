@@ -6,19 +6,22 @@
  *
  * @link URL
  *
- * @package simple-metadata-education
- * @subpackage simple-metadata-education/admin
- * @since 1.0
+ * @package simple-metadata-annotation
+ * @subpackage admin/output
+ * @since x.x.x (when the file was introduced)
  */
+
+//functionality for printing metatags
 
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
 /**
- * Function for printing metatags in site front-end
- *
- * @since
- *
- */
+* Function for printing metatags in site front-end
+*
+* @since
+*
+*/
+
 function smdan_print_tags ($type) {
 
 	$locations = get_option('smdan_locations');

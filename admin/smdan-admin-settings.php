@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Summary (no period for file headers)
+ *
+ * Description. (use period)
+ *
+ * @link URL
+ *
+ * @package simple-metadata-annotation
+ * @subpackage admin/settngs
+ * @since x.x.x (when the file was introduced)
+ */
+
 use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
 
@@ -136,8 +148,6 @@ function smdan_add_annotation_settings() {
 }
 		}
 		}
-
-
 
 /**
  * Function for rendering settings subpage
