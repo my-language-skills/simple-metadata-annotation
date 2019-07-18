@@ -122,6 +122,95 @@ function smdan_add_annotation_settings() {
 				}
 
 				?>
+				<?php if ($shares1[$key]=='1') {
+
+					function runMyFunction() {
+						if (isset($_GET['field_name'])) {
+							$locations2 = get_option('smdan_locations');
+							$key = $_GET['field_name'];
+								global $wpdb;
+									 //Get the posts table name
+									 $postsTable = $wpdb->prefix . "posts";
+									 //Get the postmeta table name
+									 $postMetaTable = $wpdb->prefix . "postmeta";
+
+									 //defining site-meta post type
+									 $meta_type = is_plugin_active('pressbooks/pressbooks.php') ? 'metadata' : 'site-meta';
+
+									 //fetching site-meta/book info post
+									 $meta_post = $wpdb->get_results($wpdb->prepare("
+											 SELECT ID FROM $postsTable WHERE post_type LIKE %s AND
+											 post_status LIKE %s",$meta_type,'publish'),ARRAY_A);
+
+									 //If we have more than one or 0 ids in the array then return and stop operation
+									 //If we have no chapters or posts to distribute data also stop operation
+									 if(count($meta_post) > 1 || count($meta_post) == 0){
+											 return;
+									 }
+
+									 //unwrapping ID from subarrays
+									 $meta_post_id = $meta_post[0]['ID'];
+
+
+									 //getting metadata of site-meta/books info post
+									 $meta_post_meta = $wpdb->get_results($wpdb->prepare("
+											 SELECT `meta_key`, `meta_value` FROM $postMetaTable WHERE `post_id` LIKE %s
+											 AND `meta_key` LIKE %s AND `meta_key` LIKE %s
+											 AND `meta_value` <>''",$meta_post_id,'%%smdan_%%','%%annotation%%'.$meta_type.'%%')
+													 ,ARRAY_A);
+
+									//Array for storing metakey=>metavalue
+									 $metaData = [];
+									 //unwrapping data from subarrays
+									 foreach($meta_post_meta as $meta){
+											 $metaData[$meta['meta_key']] = $meta['meta_value'];
+									 }
+									 //if there are no fields of Life Cycle meta in site-meta/ book info, nothing to share or freeze, exit
+									 if(count($metaData) == 0){
+											 return;
+									 }
+
+									 foreach ($locations2 as $location => $val){
+										 if ($location == $meta_type) {
+											 continue;
+										 }
+												 //Getting all posts of $location type
+												 $posts_ids = $wpdb->get_results($wpdb->prepare("
+												 SELECT `ID` FROM `$postsTable` WHERE `post_type` = %s",$location),ARRAY_A);
+												 $posts_ids_meta_type = $wpdb->get_results($wpdb->prepare("
+												 SELECT `ID` FROM `$postsTable` WHERE `post_type` = %s",$meta_type),ARRAY_A);
+												 //looping through all posts of type $locations
+												 foreach ($posts_ids as $post_id) {
+													 $post_id = $post_id['ID'];
+														 $meta_key = 'smdan_'.strtolower($key).'_annotation_'.$location;
+														 $metadata_meta_key = 'smdan_'.strtolower($key).'_annotation_'.$meta_type;
+															 delete_post_meta($post_id, $meta_key);
+															 delete_post_meta($post_id, $metadata_meta_key);
+
+												 }
+												 foreach ($posts_ids_meta_type as $post_id_meta_type) {
+													 $post_id_meta_type = $post_id_meta_type['ID'];
+														 $meta_key_meta_type = 'smdan_'.strtolower($key).'_annotation_'.$location;
+														 $metadata_meta_key_type = 'smdan_'.strtolower($key).'_annotation_'.$meta_type;
+															 delete_post_meta($post_id_meta_type, $meta_key_meta_type);
+															 delete_post_meta($post_id_meta_type, $metadata_meta_key_type);
+
+												 }
+							}
+						}
+}
+
+if (isset($_GET['hello'])) {
+	runMyFunction();
+	//refresh the page
+	?><meta http-equiv="refresh" content="0;URL=admin.php?page=smdan_set_page"><?php
+}
+ if ($shares1[$key]=='1') {
+echo '<a style="color:red; text-decoration: none; font-size: 14px;"href = "admin.php?page=smdan_set_page&hello=true&field_name='.$key.'&sharekey='.$shares1[$key].'">X</a>';}
+
+?>
+				&nbsp;&nbsp;
+			<?php } ?>
 				<label for="smdan_disable[<?=$key?>]">
 						<?php esc_html_e('Disable', 'simple-metadata-annotation'); ?>
 					  <input type="radio"  name="smdan_[<?=$key?>]" value="1" id="smdan_disable[<?=$key?>]"
