@@ -75,10 +75,8 @@ function smdan_add_annotation_settings() {
 		$network_freezes = [];
 		//in case of multisite installation, we collect options for network
 		if (is_multisite()){
-			$network_locations = get_blog_option(1, 'smdan_net_locations');
-			$network_shares = get_blog_option(1, 'smdan_net_shares');
-			$network_shares1 = get_blog_option(1, 'smdan_net_');
-			$network_freezes = get_blog_option(1, 'smdan_net_freezes');
+			$network_locations = get_site_option('smdan_net_locations');
+			$network_shares1 = get_site_option('smdan_net_');
 		}
 
 		//creating fields for activating metadata in every public post

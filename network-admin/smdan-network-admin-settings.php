@@ -26,25 +26,23 @@ defined ("ABSPATH") or die ("No script assholes!");
  */
 function smdan_add_network_settings() {
 
-    //adding settings metaboxes and settigns sections
-    add_meta_box('smdan-metadata-network-location', __('annotation Metadata', 'simple-metadata-annotation'), 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
-    add_meta_box('smdan-network-metadata-properties', __('annotation Properties Management', 'simple-metadata-annotation'), 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
+  //adding settings metaboxes and settigns sections
+  add_meta_box('smdan-metadata-network-location', __('annotation Metadata', 'simple-metadata-annotation'), 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
+  add_meta_box('smdan-network-metadata-properties', __('annotation Properties Management', 'simple-metadata-annotation'), 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
 
-    add_settings_section( 'smdan_network_meta_locations', '', '', 'smdan_network_meta_locations' );
+  add_settings_section( 'smdan_network_meta_locations', '', '', 'smdan_network_meta_locations' );
 
-    add_settings_section( 'smdan_network_meta_properties', '', '', 'smdan_network_meta_properties' );
+  add_settings_section( 'smdan_network_meta_properties', '', '', 'smdan_network_meta_properties' );
 
-    //registering settings
-    register_setting('smdan_network_meta_locations', 'smdan_net_locations');
-	register_setting ('smdan_network_meta_properties', 'smdan_net_');
-	register_setting ('smdan_network_meta_properties', 'smdan_net_freezes');
 
+  //Network options
+  add_site_option('smdan_net_locations', '');
+  add_site_option('smdan_net_', '');
 
 	// getting options values from DB
 	$post_types = smd_get_all_post_types();
-	$locations = get_option('smdan_net_locations');
-	$shares1 = get_option('smdan_net_');
-	$freezes = get_option('smdan_net_freezes');
+	$locations = get_site_option('smdan_net_locations');
+	$shares1 = get_site_option('smdan_net_');
 
 	//adding settings for locations
 	foreach ($post_types as $post_type) {
@@ -63,7 +61,7 @@ function smdan_add_network_settings() {
 
 	//adding settings for educational properties management
 	foreach (annotation_meta::$annotation_properties as $key => $data) {
-		add_settings_field ('smdan_net_'.$key, ucfirst($data[0]), function () use ($key, $data, $shares1, $freezes){
+		add_settings_field ('smdan_net_'.$key, ucfirst($data[0]), function () use ($key, $data, $shares1){
       $shares1[$key] = !empty($shares1[$key]) ? $shares1[$key] : '0';
 
 			?>
@@ -142,6 +140,7 @@ function smdan_network_render_metabox_schema_locations(){
 		<p></p>
 	</div>
 	<?php
+
 }
 
 /**
@@ -186,7 +185,7 @@ function smdan_update_network_locations() {
 	$locations = isset($_POST['smdan_net_locations']) ? $_POST['smdan_net_locations'] : array();
 
 	//collecting locations of general meta accumulative option from POST request
-	$locations_general = get_blog_option(1, 'smd_net_locations') ?: array();
+	$locations_general = get_site_option('smd_net_locations') ?: array();
 
 	$locations_general = array_merge($locations_general, $locations);
 
@@ -197,8 +196,8 @@ function smdan_update_network_locations() {
 		unset($locations_general['site-meta']);
 	}
 
-	update_blog_option(1, 'smdan_net_locations', $locations);
-	update_blog_option(1, 'smd_net_locations', $locations_general);
+	update_site_option('smdan_net_locations', $locations);
+	update_site_option('smd_net_locations', $locations_general);
 
 	//Grabbing all the site IDs
     $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
@@ -254,7 +253,7 @@ function smdan_update_network_options() {
 
 
     //updating network options in DB
-	update_blog_option(1, 'smdan_net_', $shares1);
+	update_site_option('smdan_net_', $shares1);
 
 	//Grabbing all the site IDs
     $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
