@@ -123,7 +123,7 @@ function smdan_add_annotation_settings() {
 
 				?>
 				<?php if ($shares1[$key]=='1') {
-
+if (isset($_GET['hello'])) {
 					function runMyFunction() {
 						if (isset($_GET['field_name'])) {
 							$locations2 = get_option('smdan_locations');
@@ -200,7 +200,7 @@ function smdan_add_annotation_settings() {
 						}
 }
 
-if (isset($_GET['hello'])) {
+
 	runMyFunction();
 	//refresh the page
 	?><meta http-equiv="refresh" content="0;URL=admin.php?page=smdan_set_page"><?php
