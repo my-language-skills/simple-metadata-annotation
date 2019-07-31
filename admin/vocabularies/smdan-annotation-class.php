@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Summary (no period for file headers)
+ * This category provides comments on the educational use of this learning object, and information on when and by whom the comments were created.
  *
  * Description. (use period)
  *
