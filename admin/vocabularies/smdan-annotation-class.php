@@ -295,7 +295,6 @@ class smdan_Metadata_annotation{
 						$this->metadata = get_post_meta( get_the_ID() );
 				}
 
-		$html = "\n<!--annotation METADATA-->\n";
 	$cleanCollect = [];
 		//looping through all properties and printing tags only for those, which are defined
 		foreach ( self::$annotation_properties as $key => $desc ) {
@@ -318,11 +317,11 @@ class smdan_Metadata_annotation{
 				}
 			}
 		}
-		$html .=  "      <span itemprop='description'> $val </span>\n"
-	."	</span>\n"
-	."	</div>\n";
-		$html .= "<!--END OF annotation METADATA-->\n";
-
+		$html 	=	"";
+		if(!empty($val)){
+			$html = ",";
+			$html	.=	'	"description":	"'.$val.'"';
+		}
 		return $html;
 	}
 }
