@@ -15,7 +15,7 @@
  * Plugin Name:       Simple Metadata - Annotation
  * Plugin URI:        https://github.com/my-language-skills/simple-metadata-annotation
  * Description:       Simple Metadata add-on for annotation of web-site content
- * Version:           1.0
+ * Version:           1.1
  * Author:            My Language Skills team
  * Author URI:        https://github.com/my-language-skills/
  * License:           GPL 3.0

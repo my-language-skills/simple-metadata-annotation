@@ -63,10 +63,14 @@ The Simple Metadata Annotation plugin is supplied "as is" and all use is at your
 ## Upgrade Notice
 
 ### 1.1
+* **ADDITIONS**
+		* Internationalization
+		* Disable and delete data of fields in database
+		* Create radio button for settings of fields
+    
 * **REMOVED**
     *  Auto update from github
-* **ADDITIONS**
-    * Internationalization
+
 
 ### 1.0
 * Initial release
