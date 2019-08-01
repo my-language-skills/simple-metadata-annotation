@@ -206,7 +206,7 @@ if (isset($_GET['hello'])) {
 	?><meta http-equiv="refresh" content="0;URL=admin.php?page=smdan_set_page"><?php
 }
  if ($shares1[$key]=='1') {
-echo '<a style="color:red; text-decoration: none; font-size: 14px;"href = "admin.php?page=smdan_set_page&hello=true&field_name='.$key.'&sharekey='.$shares1[$key].'">X</a>';}
+echo "<a onClick=\"javascript: return confirm('Are you sure to delete all meta-data of this field ?');\" style='color:red; text-decoration: none; font-size: 14px;'href = 'admin.php?page=smdan_set_page&hello=true&field_name='.$key.'&sharekey='.$shares1[$key].''>X</a>";}
 
 ?>
 				&nbsp;&nbsp;
