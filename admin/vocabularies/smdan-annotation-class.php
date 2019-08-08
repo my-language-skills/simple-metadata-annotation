@@ -319,7 +319,7 @@ class smdan_Metadata_annotation{
 		}
 		$html 	=	"";
 		if(!empty($val)){
-			$html = ",";
+			$html = ",\n";
 			$html	.=	'	"description":	"'.$val.'"';
 		}
 		return $html;
