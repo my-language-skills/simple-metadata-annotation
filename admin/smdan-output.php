@@ -38,14 +38,18 @@ function smdan_print_tags ($type) {
 	// Retrieve current $post_id
 	$post_id = get_the_ID();
 
+	if(!smd_is_post_CreativeWork($post_id) && !is_plugin_active('pressbooks/pressbooks.php')){
+		return;
+	}
+
 	//defining if page is post or front-page
 	if ( is_front_page() ) {
-		if (isset($locations[$front_schema]) && $locations[$front_schema] && smd_is_post_CreativeWork($post_id)) {
+		if (isset($locations[$front_schema]) && $locations[$front_schema] ) {
 			$annotation_meta = new annotation_meta($front_schema);
 			echo $annotation_meta->smdan_get_metatags($type);
 		}
 	} elseif (!is_home()){
-		if (isset($locations[$post_schema]) && $locations[$post_schema] && smd_is_post_CreativeWork($post_id)) {
+		if (isset($locations[$post_schema]) && $locations[$post_schema] ) {
 			$annotation_meta = new annotation_meta($post_schema);
 			echo $annotation_meta->smdan_get_metatags($type);
 		}
