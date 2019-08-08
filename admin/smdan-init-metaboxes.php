@@ -32,8 +32,9 @@ function smdan_create_metaboxes() {
 
 		// Can't use get_post_id() becouse it return void outside the loop of Wordpress
 		$post_id = isset($_GET['post']) ? $_GET['post'] : '';
+
 		//Don't show annotation metaboxes if the post type is not a Creative Work subtype
-		if(!smd_is_post_CreativeWork($post_id)){ //smd-general-function.php
+		if(!empty($post_id) && !smd_is_post_CreativeWork($post_id)){ //smd-general-function.php
 			return;
 		}
 
