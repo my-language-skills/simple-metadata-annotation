@@ -377,7 +377,7 @@ function smdan_render_metabox_properties(){
      $meta_post_meta = $wpdb->get_results($wpdb->prepare("
          SELECT `meta_key`, `meta_value` FROM $postMetaTable WHERE `post_id` LIKE %s
          AND `meta_key` LIKE %s AND `meta_key` LIKE %s
-         AND `meta_value` <>''",$meta_post_id,'%%smdan_%%','%%_vocab%%'.$meta_type.'%%')
+         AND `meta_value` <>''",$meta_post_id,'%%smdan_%%','%%_annotation_%%'.$meta_type.'%%')
              ,ARRAY_A);
 
   	//Array for storing metakey=>metavalue
