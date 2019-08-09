@@ -27,8 +27,10 @@ defined ("ABSPATH") or die ("No script assholes!");
 function smdan_add_network_settings() {
 
   //adding settings metaboxes and settigns sections
-  add_meta_box('smdan-metadata-network-location', __('annotation Metadata', 'simple-metadata-annotation'), 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
-  add_meta_box('smdan-network-metadata-properties', __('annotation Properties Management', 'simple-metadata-annotation'), 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
+  add_meta_box('smdan-net-box-location', __('annotation Metadata', 'simple-metadata-annotation'), 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
+  add_meta_box('smdan-net-box-properties', __('annotation Properties Management', 'simple-metadata-annotation'), 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
+  smdan_add_net_metabox_for_options();
+
 
   add_settings_section( 'smdan_network_meta_locations', '', '', 'smdan_network_meta_locations' );
 
@@ -91,28 +93,29 @@ $prefixx_blog =$prefixx.'blogs';
 }
 
 
-runMyFunction477();
-}
-if ($shares1[$key]=='1') {
-echo "<a onClick=\"javascript: return confirm('Are you sure to delete all meta-data of this field in the site?');\" style='color:red; text-decoration: none; font-size: 14px;'href = 'admin.php?page=smd_net_set_page&hello747=true&field_name=$key'>X</a>";}
+  runMyFunction477();
+  }
+  if ($shares1[$key]=='1') {
+  echo "<a onClick=\"javascript: return confirm('Are you sure to delete all meta-data of this field in the site?');\" style='color:red; text-decoration: none; font-size: 14px;'href = 'admin.php?page=smd_net_set_page&hello747=true&field_name=$key'>X</a>";}
 
-?>
-      &nbsp;&nbsp;
-    <?php } ?>
-      <label for="smdan_net_disable[<?=$key?>]"><?php esc_html_e('Disable', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="1" id="smdan_net_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
-      ?>  ></label>
-      <label for="smdan_net_local_value[<?=$key?>]"><?php esc_html_e('Local value', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="0" id="smdan_net_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' ) { echo "checked='checked'"; }
-      ?>  ></label>
-      <label  for="smdan_net_share[<?=$key?>]"><?php esc_html_e('Share', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="2" id="smdan_net_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
-      ?>  ></label>
-      <label for="smdan_net_freeze[<?=$key?>]"><?php esc_html_e('Freeze', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="3" id="smdan_net_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
-      ?> ></label>
-				<br><span class="description"><?=$data[1]?></span>
-			<?php
-		}, 'smdan_network_meta_properties', 'smdan_network_meta_properties');
-	}
+  ?>
+        &nbsp;&nbsp;
+      <?php } ?>
+        <label for="smdan_net_disable[<?=$key?>]"><?php esc_html_e('Disable', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="1" id="smdan_net_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
+        ?>  ></label>
+        <label for="smdan_net_local_value[<?=$key?>]"><?php esc_html_e('Local value', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="0" id="smdan_net_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' ) { echo "checked='checked'"; }
+        ?>  ></label>
+        <label  for="smdan_net_share[<?=$key?>]"><?php esc_html_e('Share', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="2" id="smdan_net_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
+        ?>  ></label>
+        <label for="smdan_net_freeze[<?=$key?>]"><?php esc_html_e('Freeze', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="3" id="smdan_net_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
+        ?> ></label>
+  				<br><span class="description"><?=$data[1]?></span>
+  			<?php
+  		}, 'smdan_network_meta_properties', 'smdan_network_meta_properties');
+  	}
 
 }
+
 
 /**
 * Function for rendering settings page.
@@ -120,7 +123,6 @@ echo "<a onClick=\"javascript: return confirm('Are you sure to delete all meta-d
 * @since
 *
 */
-
 function smdan_render_network_settings(){
 	wp_enqueue_script('common');
 		wp_enqueue_script('wp-lists');
@@ -157,7 +159,6 @@ function smdan_render_network_settings(){
 * @since
 *
 */
-
 function smdan_network_render_metabox_schema_locations(){
 	?>
 	<div id="smdan_network_meta_locations" class="smdan_network_meta_locations">
@@ -183,7 +184,6 @@ function smdan_network_render_metabox_schema_locations(){
 * @since
 *
 */
-
 function smdan_network_render_metabox_properties(){
 	?>
 	<div id="smdan_network_meta_properties" class="smdan_network_meta_properties">
@@ -208,7 +208,6 @@ function smdan_network_render_metabox_properties(){
 * @since
 *
 */
-
 function smdan_update_network_locations() {
 
 	check_admin_referer('smdan_network_meta_locations-options');
@@ -266,13 +265,46 @@ function smdan_update_network_locations() {
     exit;
 }
 
+
+/**
+ * Adds the metabox 'Options' in the network page
+ *
+ * @since   1.3
+ */
+function smdan_add_net_metabox_for_options(){
+  //Options metabox
+  add_settings_field ('smdan_net_options_hide_annotation', __('Hide annotation', 'simple-metadata-annotation'), 'smdan_render_net_options_hide_annotation', 'smd_net_section_options', 'smd_net_section_options');
+  add_site_option('smdan_net_hide_metadata_annotation', '');
+}
+
+
+/**
+ * Display the option 'Hide dates' in the metabox 'Options'
+ *
+ * @since   1.3
+ */
+function smdan_render_net_options_hide_annotation(){
+  ?>
+  <label for="smdan_net_hide_annotation">
+    <input type="checkbox" id="smdan_net_hide_metadata_annotation" name="smdan_net_hide_metadata_annotation" value="true"
+      <?php checked('true', get_site_option('smdan_net_hide_metadata_annotation'))?>
+    >
+  </label><br>
+  <span class="description">
+      <?php
+      esc_html_e('If selected the metadata tags for Simple Metadata Annotation will be hide');
+      ?>
+  </span>
+  <?php
+}
+
+
 /**
 * Handler for properties settings update.
 *
 * @since
 *
 */
-
 function smdan_update_network_options() {
 
 	check_admin_referer('smdan_network_meta_properties-options');
@@ -322,7 +354,30 @@ function smdan_update_network_options() {
     exit;
 }
 
+/**
+* Update hide option in the metabox 'Options' when save changes is clicked
+*
+* @since 1.3
+*
+*/
+function smdan_update_net_hide_annotation(){
+  //checking admin reffer to prevent direct access to this function
+  check_admin_referer('smd_net_section_options-options');
 
-add_action( 'network_admin_menu', 'smdan_add_network_settings', 1000); //third parameter means priority, bigger => later executed hooked function
+  //getting the value of checkbox
+  $is_hide_annotation = isset($_POST['smdan_net_hide_metadata_annotation']) ? $_POST['smdan_net_hide_metadata_annotation'] : '';
+  //updating network options
+  update_site_option('smdan_net_hide_metadata_annotation', $is_hide_annotation);
+
+  // smd-general-functions.php
+  smd_net_overwrite_in_all_sites('smdan_hide_metadata_annotation', $is_hide_annotation );
+
+}
+// When simple-metadata option metabox save changes
+// It needs simple-metadata plugin installed
+add_action('network_admin_edit_smd_update_network_options', 'smdan_update_net_hide_annotation', 10);
+
+//third parameter means priority, bigger => later executed hooked function
+add_action( 'network_admin_menu', 'smdan_add_network_settings', 1000);
 add_action( 'network_admin_edit_smdan_update_network_locations', 'smdan_update_network_locations');
 add_action( 'network_admin_edit_smdan_update_network_options', 'smdan_update_network_options');

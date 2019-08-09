@@ -51,6 +51,8 @@ function smdan_add_annotation_settings() {
 
 		add_settings_section( 'smdan_meta_properties', '', '', 'smdan_meta_properties' );
 
+		smdan_add_metabox_for_options();
+
 		//registering settings for locations and properties management
 		register_setting('smdan_meta_locations', 'smdan_locations');
 		register_setting ('smdan_meta_properties', 'smdan_shares');
@@ -234,7 +236,19 @@ echo "<a onClick=\"javascript: return confirm('Are you sure to delete all meta-d
 			}, 'smdan_meta_properties', 'smdan_meta_properties');
 }
 		}
-		}
+}
+
+
+/**
+ * Extends 'Option' metabox added by simple-metadata
+ *
+ * @since   1.3
+ */
+function smdan_add_metabox_for_options(){
+	add_settings_field ('smdan_options_hide_annotation', __('Hide annotation', 'simple-metadata-annotation'), 'smdan_render_options_hide_annotation', 'smd_set_page_section_options', 'smd_set_page_section_options');
+	register_setting ('smd_set_page_section_options', 'smdan_hide_metadata_annotation');
+}
+
 
 /**
  * Function for rendering settings subpage
@@ -329,6 +343,29 @@ function smdan_render_metabox_properties(){
 		<?php
 	}
 }
+
+
+/**
+ * Display the option 'Hide dates' in the metabox 'Options'
+ *
+ * @since   1.3
+ */
+function smdan_render_options_hide_annotation(){
+  ?>
+  <label for="smdan_hide_metadata_annotation">
+    <input type="checkbox" id="smdan_hide_metadata_annotation" name="smdan_hide_metadata_annotation" value="true"
+      <?php checked('true', get_option('smdan_hide_metadata_annotation')) ?>
+			<?php echo smd_is_option_disabled('smdan_net_hide_metadata_annotation') //smd-frontpage-related-content.php?>
+    >
+  </label><br>
+  <span class="description">
+      <?php
+      esc_html_e('If selected the metadata tags for Simple Metadata Annotation will be hide');
+      ?>
+  </span>
+  <?php
+}
+
 
 /**
  * Function for updating options and forcing overwritings on settings update
@@ -450,6 +487,7 @@ function smdan_render_metabox_properties(){
 	  		}
 	  	}
 	  }
+
 
 
 add_action('admin_menu', 'smdan_add_annotation_settings', 100);

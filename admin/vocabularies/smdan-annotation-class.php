@@ -52,7 +52,7 @@ class smdan_Metadata_annotation{
 	 */
 
 	public static $annotation_properties = array(
-		'annotation'=>array( 'Text area', 'If you are not finish', 3)
+		'annotation'=>array( 'Text area', 'If you haven\'t finished', 3)
 	);
 
 	public function __construct($typeLevelInput) {
@@ -289,13 +289,13 @@ class smdan_Metadata_annotation{
 	 */
 	public function smdan_get_metatags($type) {
 		//Getting the information from the database
-				if($this->type_level == 'metadata' || $this->type_level == 'site-meta'){
-						$this->metadata = self::get_site_meta_metadata();
-				} else {
-						$this->metadata = get_post_meta( get_the_ID() );
-				}
+		if($this->type_level == 'metadata' || $this->type_level == 'site-meta'){
+				$this->metadata = self::get_site_meta_metadata();
+		} else {
+				$this->metadata = get_post_meta( get_the_ID() );
+		}
 
-	$cleanCollect = [];
+		$cleanCollect = [];
 		//looping through all properties and printing tags only for those, which are defined
 		foreach ( self::$annotation_properties as $key => $desc ) {
 			//Constructing the key for the data
@@ -318,9 +318,11 @@ class smdan_Metadata_annotation{
 			}
 		}
 		$html 	=	"";
-		if(!empty($val)){
+		if(!empty($val) && !get_option('smdan_hide_metadata_annotation')){
 			$html = ",\n";
-			$html	.=	'	"description":	"'.$val.'"';
+			$html .=	'	"comment":	{
+      "@type"	:	"Comment",
+      "text"	: "'.$val.'"' . "\n\t}";
 		}
 		return $html;
 	}
