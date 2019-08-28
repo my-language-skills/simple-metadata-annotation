@@ -284,6 +284,8 @@ class smdan_Metadata_annotation{
 	/**
 	 * Function that creates the vocabulary metatags
 	 *
+	 * @return $metaData
+	 *
 	 * @since    0.x
 	 * @access   public
 	 */
