@@ -19,7 +19,7 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 * Function for printing metatags in site front-end
 *
 * @since
-*
+* @return $metadata
 */
 
 function smdan_print_tags ($type) {
@@ -42,17 +42,19 @@ function smdan_print_tags ($type) {
 		return;
 	}
 
+	$metadata = [];
 	//defining if page is post or front-page
 	if ( is_front_page() ) {
 		if (isset($locations[$front_schema]) && $locations[$front_schema] ) {
 			$annotation_meta = new annotation_meta($front_schema);
-			echo $annotation_meta->smdan_get_metatags($type);
+			$metadata =	array_merge($metadata, $annotation_meta->smdan_get_metatags($type));
 		}
 	} elseif (!is_home()){
 		if (isset($locations[$post_schema]) && $locations[$post_schema] ) {
 			$annotation_meta = new annotation_meta($post_schema);
-			echo $annotation_meta->smdan_get_metatags($type);
+			$metadata =	array_merge($metadata, $annotation_meta->smdan_get_metatags($type));
 		}
 	}
 
+	return $metadata;
 }

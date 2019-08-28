@@ -317,13 +317,15 @@ class smdan_Metadata_annotation{
 				}
 			}
 		}
-		$html 	=	"";
+
+		$metadata = [];
 		if(!empty($val) && !get_option('smdan_hide_metadata_annotation')){
-			$html = ",\n";
-			$html .=	'	"comment":	{
-      "@type"	:	"Comment",
-      "text"	: "'.$val.'"' . "\n\t}";
+			$metadata['comment'] = [
+		  		'@type'	=>	'Comment',
+	    		'text'	=> $val
+			];
 		}
-		return $html;
+
+		return $metadata;
 	}
 }
