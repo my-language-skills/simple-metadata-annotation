@@ -24,11 +24,12 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 
 function smdan_print_tags ($type) {
 
+	$metadata = [];
 	// Retrieve current $post_id
 	$post_id = get_the_ID();
 
 	if(!smd_is_post_CreativeWork($post_id) && !is_plugin_active('pressbooks/pressbooks.php')){
-		return;
+		return $metadata;
 	}
 
 	$locations = get_option('smdan_locations');
@@ -43,7 +44,6 @@ function smdan_print_tags ($type) {
 	//recieving post type of current post
 	$post_schema = get_post_type();
 
-	$metadata = [];
 	//defining if page is post or front-page
 	if ( is_front_page() ) {
 		if (isset($locations[$front_schema]) && $locations[$front_schema] ) {
