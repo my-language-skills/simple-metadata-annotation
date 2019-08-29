@@ -43,8 +43,8 @@ function smdan_add_network_settings() {
 
 	// getting options values from DB
 	$post_types = smd_get_all_post_types();
-	$locations = get_site_option('smdan_net_locations');
-	$shares1 = get_site_option('smdan_net_');
+	$locations = (array) get_site_option('smdan_net_locations');
+	$props_values = (array) get_site_option('smdan_net_');
 
 	//adding settings for locations
 	foreach ($post_types as $post_type) {
@@ -63,11 +63,11 @@ function smdan_add_network_settings() {
 
 	//adding settings for educational properties management
 	foreach (annotation_meta::$annotation_properties as $key => $data) {
-		add_settings_field ('smdan_net_'.$key, ucfirst($data[0]), function () use ($key, $data, $shares1){
-      $shares1[$key] = !empty($shares1[$key]) ? $shares1[$key] : '0';
+		add_settings_field ('smdan_net_'.$key, ucfirst($data[0]), function () use ($key, $data, $props_values){
+      $props_values[$key] = !empty($props_values[$key]) ? $props_values[$key] : '0';
 
       ?>
-      <?php if ($shares1[$key]=='1') {
+      <?php if ($props_values[$key]=='1') {
 if (isset($_GET['hello747'])) {
         function runMyFunction477() {
           if (isset($_GET['field_name'])) {
@@ -95,19 +95,19 @@ $prefixx_blog =$prefixx.'blogs';
 
   runMyFunction477();
   }
-  if ($shares1[$key]=='1') {
+  if ($props_values[$key]=='1') {
   echo "<a onClick=\"javascript: return confirm('Are you sure to delete all meta-data of this field in the site?');\" style='color:red; text-decoration: none; font-size: 14px;'href = 'admin.php?page=smd_net_set_page&hello747=true&field_name=$key'>X</a>";}
 
   ?>
         &nbsp;&nbsp;
       <?php } ?>
-        <label for="smdan_net_disable[<?=$key?>]"><?php esc_html_e('Disable', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="1" id="smdan_net_disable[<?=$key?>]" <?php if ($shares1[$key]=='1') { echo "checked='checked'"; }
+        <label for="smdan_net_disable[<?=$key?>]"><?php esc_html_e('Disable', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="1" id="smdan_net_disable[<?=$key?>]" <?php if ($props_values[$key]=='1') { echo "checked='checked'"; }
         ?>  ></label>
-        <label for="smdan_net_local_value[<?=$key?>]"><?php esc_html_e('Local value', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="0" id="smdan_net_local_value[<?=$key?>]" <?php if ($shares1[$key]=='0' ) { echo "checked='checked'"; }
+        <label for="smdan_net_local_value[<?=$key?>]"><?php esc_html_e('Local value', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="0" id="smdan_net_local_value[<?=$key?>]" <?php if ($props_values[$key]=='0' ) { echo "checked='checked'"; }
         ?>  ></label>
-        <label  for="smdan_net_share[<?=$key?>]"><?php esc_html_e('Share', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="2" id="smdan_net_share[<?=$key?>]" <?php if ($shares1[$key]=='2') { echo "checked='checked'"; }
+        <label  for="smdan_net_share[<?=$key?>]"><?php esc_html_e('Share', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="2" id="smdan_net_share[<?=$key?>]" <?php if ($props_values[$key]=='2') { echo "checked='checked'"; }
         ?>  ></label>
-        <label for="smdan_net_freeze[<?=$key?>]"><?php esc_html_e('Freeze', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="3" id="smdan_net_freeze[<?=$key?>]"  <?php if ($shares1[$key]=='3') { echo "checked='checked'"; }
+        <label for="smdan_net_freeze[<?=$key?>]"><?php esc_html_e('Freeze', 'simple-metadata-annotation'); ?> <input type="radio"  name="smdan_net_[<?=$key?>]" value="3" id="smdan_net_freeze[<?=$key?>]"  <?php if ($props_values[$key]=='3') { echo "checked='checked'"; }
         ?> ></label>
   				<br><span class="description"><?=$data[1]?></span>
   			<?php
@@ -314,12 +314,12 @@ function smdan_update_network_options() {
 
     //collecting network options values from request
 
-    $shares1 = isset($_POST['smdan_net_']) ? $_POST['smdan_net_'] : array();
+    $props_values = isset($_POST['smdan_net_']) ? $_POST['smdan_net_'] : array();
     //if property is frozen, it's automatically shared
 
 
     //updating network options in DB
-	update_site_option('smdan_net_', $shares1);
+	update_site_option('smdan_net_', $props_values);
 
 	//Grabbing all the site IDs
     $siteids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
@@ -335,12 +335,12 @@ function smdan_update_network_options() {
 
     	//> we merge values received from network settings with local values of every blog
 
-    	$shares1_local = get_option('smdan_') ?: array();
-    	$shares1_local = array_merge($shares1_local, $shares1);
+    	$props_values_local = get_option('smdan_') ?: array();
+    	$props_values_local = array_merge($props_values_local, $props_values);
     	//<
 
     	//updating local options
-    	update_option('smdan_', $shares1_local);
+    	update_option('smdan_', $props_values_local);
 
     	smdan_update_overwrites();
     }
