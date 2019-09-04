@@ -27,8 +27,8 @@ defined ("ABSPATH") or die ("No script assholes!");
 function smdan_add_network_settings() {
 
   //adding settings metaboxes and settigns sections
-  add_meta_box('smdan-net-box-location', __('annotation Metadata', 'simple-metadata-annotation'), 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
-  add_meta_box('smdan-net-box-properties', __('annotation Properties Management', 'simple-metadata-annotation'), 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
+  add_meta_box('smdan-net-box-location', __('Annotation Metadata', 'simple-metadata-annotation'), 'smdan_network_render_metabox_schema_locations', 'smd_net_set_page', 'normal', 'core');
+  add_meta_box('smdan-net-box-properties', __('Annotation Properties Management', 'simple-metadata-annotation'), 'smdan_network_render_metabox_properties', 'smd_net_set_page', 'normal', 'core');
   smdan_add_net_metabox_for_options();
 
 

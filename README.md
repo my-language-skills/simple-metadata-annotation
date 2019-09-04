@@ -1,6 +1,6 @@
 # Simple Metadata Annotation
 
-* Contributors: colomet, danzhik, huguespages, davideC00
+* Contributors: @colomet, @danzhik, @huguespages, @davideC00
 * Donate link: https://opencollective.com/mylanguageskills
 * Tags: aiom, extensions, metadata, annotation
 * Requires at least: 4.9.6
@@ -63,13 +63,13 @@ The Simple Metadata Annotation plugin is supplied "as is" and all use is at your
 ## Upgrade Notice
 
 ### 1.1
-* **ADDITIONS**
-		* Internationalization
-		* Disable and delete data of fields in database
-		* Create radio button for settings of fields
-    
-* **REMOVED**
-    *  Auto update from github
+* Internationalization
+* Disable and delete data of fields in database
+* Create radio button for settings of fields
+* Removes auto update from github
+* Json-ld metadata
+* Option hide annotation
+* Bug fix
 
 
 ### 1.0
