@@ -1,10 +1,10 @@
 === Simple metadata annotation ===
 Contributors: colomet, danzhik, huguespages, davideC00
 Donate link: https://opencollective.com/mylanguageskills
-Tags: multisite, pressbooks, simple metadata, metadata, schema.org, rich snippets, wordpress-plugin,
-Requires at least: 5.2
+Tags: aiom, extensions, metadata, annotation
+Requires at least: 4.9.6
 Tested up to: 5.2.2
-Stable tag: 1.3
+Stable tag: 1.1
 Requires PHP: 5.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

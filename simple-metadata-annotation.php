@@ -8,7 +8,7 @@
  * that starts the plugin.
  *
  * @link              https://github.com/my-language-skills/simple-metadata-annotation
- * @since             0.1
+ * @since             1.0
  * @package           simple-metadata
  *
  * @wordpress-plugin

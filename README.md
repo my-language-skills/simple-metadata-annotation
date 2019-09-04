@@ -6,7 +6,7 @@
 * Requires at least: 4.9.6
 * Tested up to: 5.2.2
 * Requires PHP: 7.0
-* Stable tag: 1.0
+* Stable tag: 1.1
 * License: GNU 3.0
 * License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 * Gutenberg: compatible
