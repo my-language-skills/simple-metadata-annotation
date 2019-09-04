@@ -1,21 +1,6 @@
 <?php
 
 /**
- * Summary (no period for file headers)
- *
- * Description. (use period)
- *
- * @link URL
- *
- * @package simple-metadata-annotation
- * @subpackage admin/settngs
- * @since x.x.x (when the file was introduced)
- */
-
-use \vocabularies\smdan_Metadata_annotation as annotation_meta;
-
-
-/**
  * Creates settings subpage for Simple Metadata
  *
  * Description
@@ -24,15 +9,19 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
  *
  * @package simple-metadata-annotation
  * @subpackage simple-metadata-annotation/admin
- * @since x.x.x (when the file was introduced)
+ * @since	1.0
  */
+
+use \vocabularies\smdan_Metadata_annotation as annotation_meta;
+
+
 
 defined ("ABSPATH") or die ("No script assholes!");
 
 /**
  * Functions to add plugin settings subpage and registering settings and their sections
  *
- * @since
+ * @since	1.0
  *
  */
 function smdan_add_annotation_settings() {
@@ -242,7 +231,7 @@ echo "<a onClick=\"javascript: return confirm('Are you sure to delete all meta-d
 /**
  * Extends 'Option' metabox added by simple-metadata
  *
- * @since   1.3
+ * @since	1.1
  */
 function smdan_add_metabox_for_options(){
 	add_settings_field ('smdan_options_hide_annotation', __('Hide annotation', 'simple-metadata-annotation'), 'smdan_render_options_hide_annotation', 'smd_set_page_section_options', 'smd_set_page_section_options');
@@ -253,7 +242,7 @@ function smdan_add_metabox_for_options(){
 /**
  * Function for rendering settings subpage
  *
- * @since
+ * @since	1.0
  *
  */
 function smdan_render_settings() {
@@ -294,7 +283,7 @@ function smdan_render_settings() {
 /**
  * Function for rendering 'Locations' metabox
  *
- * @since
+ * @since	1.0
  *
  */
 function smdan_render_metabox_schema_locations(){
@@ -316,7 +305,7 @@ function smdan_render_metabox_schema_locations(){
 /**
  * Function for rendering 'annotation properties' metabox
  *
- * @since
+ * @since	1.0
  *
  */
 function smdan_render_metabox_properties(){
@@ -348,7 +337,7 @@ function smdan_render_metabox_properties(){
 /**
  * Display the option 'Hide dates' in the metabox 'Options'
  *
- * @since   1.3
+ * @since	1.1
  */
 function smdan_render_options_hide_annotation(){
   ?>
@@ -370,7 +359,7 @@ function smdan_render_options_hide_annotation(){
 /**
  * Function for updating options and forcing overwritings on settings update
  *
- * @since
+ * @since	1.0
  *
  */
  function smdan_update_overwrites(){

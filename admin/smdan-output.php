@@ -8,7 +8,7 @@
  *
  * @package simple-metadata-annotation
  * @subpackage admin/output
- * @since x.x.x (when the file was introduced)
+ * @since	1.0
  */
 
 //functionality for printing metatags
@@ -18,7 +18,7 @@ use \vocabularies\smdan_Metadata_annotation as annotation_meta;
 /**
 * Function for printing metatags in site front-end
 *
-* @since
+* @since	1.0
 * @return $metadata
 */
 

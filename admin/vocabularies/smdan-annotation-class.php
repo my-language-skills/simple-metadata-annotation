@@ -9,7 +9,7 @@
  *
  * @package simple-metadata-annotation
  * @subpackage classes
- * @since x.x.x (when the file was introduced)
+ * @since 1.0
  */
 
 namespace vocabularies;
@@ -23,7 +23,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * The type level that identifies where these metaboxes will be created
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	public $type_level;
@@ -31,7 +31,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * The variable that holds the values from the database for the vocabulary output
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	public $metadata;
@@ -39,7 +39,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * The variable that holds the group id of the metabox
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 	public $groupId;
@@ -47,7 +47,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * The variable that holds the properties of this vocabulary
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 * @access   public
 	 */
 
@@ -66,7 +66,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * Function to render fields, which are frozen by admin/network admin
 	 *
-	 * @since
+	 * @since	1.0
 	 *
 	 */
 	public function render_frozen_field ($field_slug, $field, $value) {
@@ -99,7 +99,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * Function to render fields, which are disabled by admin/network admin
 	 *
-	 * @since
+	 * @since	1.0
 	 *
 	 */
 	public function render_disable_field ($field_slug, $field, $value) {
@@ -129,7 +129,7 @@ class smdan_Metadata_annotation{
 	 *
 	 * @param string Accepting a string so we can distinguish on witch place each metabox is created
 	 *
-	 * @since 0.x
+	 * @since 1.0
 	 */
 	public function smdan_add_metabox( $meta_position ) {
 
@@ -220,7 +220,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * A function needed for the array of metadata that comes from each post site-meta cpt or chapter
 	 * It automatically returns the first item in the array.
-	 * @since 0.x
+	 * @since 1.0
 	 *
 	 */
 	private function smdan_get_first( $my_array ) {
@@ -234,7 +234,7 @@ class smdan_Metadata_annotation{
 	/**
 	 * Gets the value for the microtags from $this->metadata.
 	 *
-	 * @since    0.x
+	 * @since    1.0
 	 *
 	 */
 	private function smdan_get_value( $propName ) {
@@ -286,7 +286,8 @@ class smdan_Metadata_annotation{
 	 *
 	 * @return $metaData
 	 *
-	 * @since    0.x
+	 * @since		1.0
+	 * @since		1.1 micro-data -> json-ld
 	 * @access   public
 	 */
 	public function smdan_get_metatags($type) {

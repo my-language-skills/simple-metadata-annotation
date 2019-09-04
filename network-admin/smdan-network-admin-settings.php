@@ -9,7 +9,7 @@
  *
  * @package simple-metadata-annotation
  * @subpackage admin/network
- * @since x.x.x (when the file was introduced)
+ * @since 1.0 
  */
 
 //network settings functionality
@@ -21,7 +21,7 @@ defined ("ABSPATH") or die ("No script assholes!");
 /**
  * Function for adding network settings page
  *
- * @since
+ * @since 1.0
  *
  */
 function smdan_add_network_settings() {
@@ -120,7 +120,7 @@ $prefixx_blog =$prefixx.'blogs';
 /**
 * Function for rendering settings page.
 *
-* @since
+* @since 1.0
 *
 */
 function smdan_render_network_settings(){
@@ -156,7 +156,7 @@ function smdan_render_network_settings(){
 /**
 * Function for rendering metabox of locations.
 *
-* @since
+* @since 1.0
 *
 */
 function smdan_network_render_metabox_schema_locations(){
@@ -181,7 +181,7 @@ function smdan_network_render_metabox_schema_locations(){
 /**
 * Function for rendering metabox for properties management.
 *
-* @since
+* @since 1.0
 *
 */
 function smdan_network_render_metabox_properties(){
@@ -205,7 +205,7 @@ function smdan_network_render_metabox_properties(){
 /**
 * Handler for locations settings update.
 *
-* @since
+* @since 1.0
 *
 */
 function smdan_update_network_locations() {
@@ -269,7 +269,7 @@ function smdan_update_network_locations() {
 /**
  * Adds the metabox 'Options' in the network page
  *
- * @since   1.3
+ * @since 1.1
  */
 function smdan_add_net_metabox_for_options(){
   //Options metabox
@@ -281,7 +281,7 @@ function smdan_add_net_metabox_for_options(){
 /**
  * Display the option 'Hide dates' in the metabox 'Options'
  *
- * @since   1.3
+ * @since 1.1
  */
 function smdan_render_net_options_hide_annotation(){
   ?>
@@ -302,7 +302,7 @@ function smdan_render_net_options_hide_annotation(){
 /**
 * Handler for properties settings update.
 *
-* @since
+* @since 1.1
 *
 */
 function smdan_update_network_options() {
@@ -357,7 +357,7 @@ function smdan_update_network_options() {
 /**
 * Update hide option in the metabox 'Options' when save changes is clicked
 *
-* @since 1.3
+* @since 1.1
 *
 */
 function smdan_update_net_hide_annotation(){
