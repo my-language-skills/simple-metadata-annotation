@@ -1,5 +1,5 @@
 === Simple metadata annotation ===
-Contributors: colomet, danzhik, huguespages, davideC00
+Contributors: colomet, danzhik, huguespages, dcazzorla
 Donate link: https://opencollective.com/mylanguageskills
 Tags: aiom, extensions, metadata, annotation
 Requires at least: 4.9.6
