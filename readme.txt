@@ -13,7 +13,7 @@ This plugin enhance [Simple metadata](https://github.com/my-language-skills/simp
 
 == Description ==
 
-This plugin provides the ability to have one metafield with the annotation schema property.
+This plugin provides the ability to have a comment schema property on your site. The property can be deactivated in front-end, if so, the meta-box would be just a place for internal annotations.
 
 
 == Front-page related content =
@@ -21,20 +21,20 @@ This plugin provides the ability to have one metafield with the annotation schem
 
 * Properties
   * Creative Work type
-    * **Added:** xxxxx property
+    * **Added:** comment property
 
 
 = Pages related content =
 
 * Properties
   * Creative Work type
-    * **Added:** xxxx property
+    * **Added:** comment property
 
 
 = Posts and CPTs related content =
 
   * Creative Work type
-    * **Added:** xxxx property
+    * **Added:** comment property
 
 
 == Installation ==
